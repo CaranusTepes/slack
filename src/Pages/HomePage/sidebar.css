@@ -1,0 +1,11 @@
+.sidebar {
+  width: 13%;
+  height: 100%;
+  border-style: solid;
+}
+
+.topSideBar {
+  padding: 10px;
+  height: 3vh;
+  font-size: 1.3em;
+}
