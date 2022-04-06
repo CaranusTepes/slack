@@ -1,0 +1,9 @@
+.header {
+  display: flex;
+  background-color: blue;
+  align-items: center;
+  color: white;
+  height: 5vh;
+  position: relative;
+  z-index: 203;
+}
