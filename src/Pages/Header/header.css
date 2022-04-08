@@ -1,9 +1,40 @@
 .header {
   display: flex;
-  background-color: blue;
+  margin: auto;
   align-items: center;
-  color: white;
-  height: 5vh;
+  justify-content: center;
+  background-color: #EDEFF1;
+  color: black;
+  height: 44px;
   position: relative;
   z-index: 203;
+}
+
+img {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  right: 10px;
+}
+
+form{
+  align-items: center;
+  padding: 10px;
+}
+
+.icons {
+  width: 25px;
+  height: 25px;
+  padding: 10px;
+}
+
+input {
+  width: 70vh;
+  height: 23px;
+  border-radius: 5px;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
 }
