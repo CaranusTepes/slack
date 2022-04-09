@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.css";
-import { BiTime, BiHelpCircle, BiSearchAlt } from "react-icons/bi";
+import { BiTime, BiHelpCircle } from "react-icons/bi";
 import Ra from "../../Assets/Images/Ra.png";
 
 

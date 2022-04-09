@@ -1,7 +1,117 @@
-.topHome {
-  padding: 10px;
+.mainPage {
+  width: 100%;
+  height: 95vh;
+}
+
+.subPage {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerBar {
+  width: 173vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topMainBar {
+  display: flex;
+  margin: 0px;
+  padding: 0px 15px 0px;
+  width: 100%;
+  height: 50px;
+  font-size: 1.1em;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Larsseit";
+  border-bottom: 1px solid #d8d8d8;
+  border-right: 1px solid #d8d8d8;
+}
+
+.topHolder {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 10px 0px 10px;
+}
+
+.channelIcon {
+  width: 20px;
+  height: 20px;
+  padding: 0px 5px 0px;
+}
+
+.rightHolder {
+  border: 1px solid #333232;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}
+
+.peopleIcon {
+  width: 20px;
+  height: 20px;
+  color: #333232;
+  border-radius: 5px;
+}
+
+.subMainBar {
+  display: flex;
+  margin: 0px;
+  padding: 0px 15px 0px;
+  width: 100%;
+  height: 30px;
+  font-size: 15px;
+  align-items: center;
+  font-family: "Larsseit";
+  letter-spacing: 0px;
+  color: #a4a4a4;
+  border-bottom: 1px solid #d8d8d8;
+  border-right: 1px solid #d8d8d8;
+}
+
+.contentBox {
+  background-color: pink;
+  height: 69vh;
+  margin: 0px 15px 0px;
+  padding: 5px;
+}
+
+.messageBox {
+  margin: 10px;
+  padding: 5px;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #d8d8d8;
+  border-radius: 10px;
+  height: 13vh;
+}
+
+.inputStyles {
+  display: flex;
   height: 3vh;
-  font-size: 1.3em;
-  border-style: solid;
-  width: auto;
+  justify-content: space-between;
+  font-size: 1.1em;
+  align-items: center;
+  font-family: "Larsseit";
+  border-radius: 10px 10px 0px 0px;  
+  background-color: #e3e6ea;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.textBox {
+  display: block;
+  margin: auto;
+  padding: auto;
+  align-items: center;
+  border: none;
+  width: 95%;
+}
+
+.textEditor, .sendButton{
+  padding: 10px;
 }

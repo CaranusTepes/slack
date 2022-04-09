@@ -1,14 +1,17 @@
 import React from "react";
 import "./App.css";
-import Header from "./Pages/Header/Header";
-import Main from "./Pages/HomePage/Main";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Data from "./Data";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Main />
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/home" element={<Data />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
