@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import "./login.css";
-import Particles from "./Particles";
 
 const Login = () => {
   const [isActive, setActive] = useState("true");
 
   const signUpButton = () => {
-    setActive(!isActive);
+    setActive(true);
   };
   const signInButton = () => {
-    setActive(true);
+    setActive(!isActive);
   };
 
   function signInSubmit(e) {
@@ -24,7 +23,10 @@ const Login = () => {
 
   return (
     <body className="loginBody">
-      <div className={isActive ? "container" : "container right-panel-active"} id="container">
+      <div
+        className={isActive ? "container" : "container right-panel-active"}
+        id="container"
+      >
         <div className="form-container sign-up-container">
           <form onSubmit={signUpSubmit}>
             <h1>Create Account</h1>
@@ -49,7 +51,7 @@ const Login = () => {
         </div>
         <div className="overlay-container">
           <div className="overlay">
-            <div className="overlay-panel overlay-left">
+            <div className="overlay-panel overlay-right">
               <h1>Welcome Back!</h1>
               <p>
                 To keep connected with us please login with your personal info
@@ -58,7 +60,7 @@ const Login = () => {
                 Sign In
               </button>
             </div>
-            <div className="overlay-panel overlay-right">
+            <div className="overlay-panel overlay-left">
               <h1>Hello, Friend!</h1>
               <p>Enter your personal details and start journey with us</p>
               <button className="ghost" id="signUp" onClick={signUpButton}>

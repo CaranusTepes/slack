@@ -18,7 +18,7 @@ const Header = () => {
         />
       </form>
       <BiHelpCircle className="icons"/>
-      <img className=""src={Ra} alt="Profile" />
+      <img src={Ra} alt="Profile" className="profilePicture"/>
     </div>
   );
 };

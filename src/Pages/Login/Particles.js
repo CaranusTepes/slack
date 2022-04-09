@@ -1,4 +1,5 @@
 import Particles from "react-tsparticles";
+import "./particles.css"
 
 const App = () => {
   const particlesInit = (main) => {
@@ -72,17 +73,12 @@ const App = () => {
           },
           move: {
             enable: true,
-            speed: 5,
+            speed: 2,
             direction: "none",
             random: false,
             straight: false,
-            out_mode: "out",
             bounce: false,
-            attract: {
-              enable: false,
-              rotateX: 600,
-              rotateY: 1200,
-            },
+            outModes: "out",
           },
           number: {
             value: 80,
@@ -94,12 +90,6 @@ const App = () => {
           opacity: {
             value: 1,
             random: false,
-            anim: {
-              enable: false,
-              speed: 1,
-              opacity_min: 0.1,
-              sync: false,
-            },
           },
           shape: {
             type: ["circle"],
@@ -110,21 +100,10 @@ const App = () => {
             polygon: {
               nb_sides: 5,
             },
-            image: {
-              src: "https://cdn.freebiesupply.com/logos/large/2x/slack-logo-icon.png",
-              width: 100,
-              height: 100,
-            },
           },
           size: {
             value: 8,
             random: true,
-            anim: {
-              enable: false,
-              speed: 10,
-              size_min: 10,
-              sync: false,
-            },
           },
         },
         detectRetina: true,

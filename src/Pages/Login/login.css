@@ -1,12 +1,10 @@
 .loginBody {
-	background: #f6f5f7;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
   font-family: "Larsseit";
-	height: 100vh;
-	margin: -20px 0 50px;
+	overflow: hidden;
 }
 
 h1 {
@@ -39,6 +37,7 @@ a {
 }
 
 button {
+	margin: 10px;
 	border-radius: 20px;
 	border: 1px solid #4A154B;
 	background-color: #4A154B;
