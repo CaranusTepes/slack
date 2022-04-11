@@ -1,5 +1,5 @@
 import React from "react";
-import "./sidebar.css";
+import "./home.css";
 import Channel from "./Channel/Channel";
 import Message from "./Message/Message";
 import slackWhite from "../../Assets/Images/slackWhite.png";
