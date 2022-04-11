@@ -1,0 +1,41 @@
+.messageTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: auto;
+}
+
+.messageName {
+  display: flex;
+  flex-direction: row;
+}
+
+.messageAdd {
+  display: flex;
+  margin-left: 200px;
+}
+
+.optionIconMessage {
+  width: 20px;
+  height: 20px;
+  padding: 0px 0px 0px 10px;
+}
+
+.messageList {
+  padding: 10px;
+}
+
+.messageListItem {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.messageListPerItem {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+}

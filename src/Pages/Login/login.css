@@ -25,4 +25,11 @@ body {
   height: 10vh;
   margin-top: 150px;
   z-index: 2;
+  width: auto;
+}
+
+.auth {
+  display: flex;
+  width: auto;
+  height: auto;
 }

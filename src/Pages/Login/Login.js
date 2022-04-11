@@ -9,7 +9,7 @@ const Login = () => {
     <div className="loginLanding">
       <Particles className="particles"/>
       <img src={logo} alt="Logo" className="slackLogo"/>
-      <Auth />
+      <Auth className="auth"/>
     </div>
   );
 };
