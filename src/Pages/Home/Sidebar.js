@@ -114,7 +114,7 @@ function Sidebar() {
               type="text"
               placeholder="Write a message..."
               className="textInput"
-              contenteditable
+              contentEditable
             />
             <div>
               <BiBold className="pageFooterIcons" />
