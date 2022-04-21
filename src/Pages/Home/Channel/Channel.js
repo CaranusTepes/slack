@@ -50,7 +50,7 @@ function Channel({ title, items, multiSelect = false }) {
             )}
           </div>
           <div className="channelAdd">
-            <AiOutlinePlus className="optionIcon" />{" "}
+            <AiOutlinePlus className="optionIconTwo" />{" "}
           </div>
         </div>
       </div>

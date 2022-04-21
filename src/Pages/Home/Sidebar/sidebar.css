@@ -1,0 +1,213 @@
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.iconBar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #202124;
+}
+
+.whiteLogo {
+  height: 25vh;
+  width: auto;
+  z-index: 2;
+}
+
+.groupBarIcons {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.barIcons {
+  width: 25px;
+  height: 25px;
+  z-index: 2;
+  color: #ffffff;
+  padding: 15px;
+}
+
+.barIconsLogout {
+  width: 25px;
+  height: 25px;
+  z-index: 2;
+  color: #ffffff;
+  padding: 15px;
+  border-top: 1px solid #ffffff;
+}
+
+.barIcons:hover, .barIconsLogout:hover {
+  background-color: #323639;
+  cursor: pointer;
+}
+
+.menuBar {
+  display: flex;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #282c2f;
+  width:100%;
+}
+
+.menuProfile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  border-bottom: 1px solid #ffffff;
+}
+
+.menuTabTwo {
+  display: flex;
+  color: #ffffff;
+  padding: 15px;
+  width: 25px;
+  height: 25px;
+}
+
+.menuTabTwo:hover {
+  background-color: #323639;
+  cursor: pointer;
+}
+
+.menuTabOne {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.menuText {
+  color: #ffffff;
+  font-family: "Larsseit";
+  padding: 10px;
+}
+
+.menuPosition {
+  font-size: 13px;
+  padding-top: 3px;
+}
+
+.slackBot {
+  width: 5vh;
+  border-radius: 25px;
+}
+
+.menuOptions {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  color: #ffffff;
+  font-family: "Larsseit";
+  padding: 15px;
+}
+
+.menuChoices {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+}
+
+.menuChoices:hover {
+  background-color: #323639;
+  cursor: pointer;
+}
+
+.optionIcon {
+  width: 20px;
+  height: 20px;
+  padding: 0px 10px 0px 0px;
+}
+
+
+.menuChannels {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  color: #ffffff;
+  font-family: "Larsseit";
+  padding: 15px;
+}
+
+.menuMessages {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  color: #ffffff;
+  font-family: "Larsseit";
+  padding: 15px;
+}
+
+.optionIconTwo {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+}
+
+.optionIconTwo:hover {
+  background-color: #323639;
+  cursor: pointer;
+}
+
+.channels-dropdown-header,
+.direct-messages-dropdown-header {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  line-height: 2;
+}
+.channels-dropdown-header span,
+.direct-messages-dropdown-header span {
+  width: 65%;
+  padding: 8px;
+}
+
+.sidebar-add-icon {
+  width: 30%;
+  display: flex;
+  justify-content: right;
+  cursor: pointer;
+}
+
+.channels,
+.direct-messages {
+  overflow: auto;
+  height: 25vh;
+}
+.channels li,
+.direct-messages li {
+  padding: 0 29px;
+  display: flex;
+  align-items: center;
+  line-height: 1.8;
+}
+.channels li:hover,
+.direct-messages li:hover {
+  background-color: #1263a3;
+  font-weight: 500;
+}
+.channels span,
+.direct-messages span {
+  padding-left: 8px;
+}
+.channels img,
+.direct-messages img {
+  height: 20px;
+  width: 20px;
+  border-radius: 2px;
+}
+.channels a,
+.direct-messages a {
+  color: #ffffff;
+  text-decoration: none;
+}

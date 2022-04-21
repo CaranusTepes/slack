@@ -40,22 +40,10 @@ function Message({ title, items, multiSelect = false }) {
         onKeyPress={() => toggle(!open)}
         onClick={() => toggle(!open)}
       >
-        <div className="messageTitle">
-          <div className="messageName">
-            {title}
-            {open ? (
-              <MdOutlineArrowDropUp className="optionIconMessage" />
-            ) : (
-              <MdOutlineArrowDropDown className="optionIconMessage" />
-            )}
-          </div>
-          <div className="messageAdd">
-            <AiOutlinePlus className="optionIcon" />{" "}
-          </div>
-        </div>
+
       </div>
       {open && (
-        <ul className="messageList">
+        <div className="messageList">
           {items.map((item) => (
             <div className="messageListItem" key={item.id}>
               <div type="button" onClick={() => handleOnClick(item)} className="messageListPerItem">
@@ -65,7 +53,7 @@ function Message({ title, items, multiSelect = false }) {
               </div>
             </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

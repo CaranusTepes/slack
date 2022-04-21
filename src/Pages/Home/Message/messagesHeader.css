@@ -1,0 +1,38 @@
+.messagesContainer {
+  margin: 10px;
+  padding: 10px;
+}
+
+.messagesHeader {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ffffff;
+  width: 100;
+  font-size: 10px;
+}
+
+.profile {
+  width: 5vh;
+  border-radius: 25px;
+  padding: 10px;
+}
+
+.messageButton {
+  margin-left: 10px;
+}
+
+.headerName {
+  font-size: 25px;
+}
+
+.messages-scroll-container {
+  height: 72vh;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  margin: 15px;
+}
+
+.beginMessage {
+  color: #ffffff;
+}

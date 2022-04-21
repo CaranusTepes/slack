@@ -1,133 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Sidebar from "./Sidebar/Sidebar";
 import "./home.css";
-import Channel from "./Channel/Channel";
-import Message from "./Message/Message";
-import slackWhite from "../../Assets/Images/slackWhite.png";
-import slackbot from "../../Assets/Images/slackbot.png";
-import {
-  RiNotification2Line,
-  RiLogoutCircleLine,
-  RiSettings4Line,
-} from "react-icons/ri";
-import {
-  HiOutlineDotsVertical,
-  HiSearch,
-  HiStatusOnline,
-} from "react-icons/hi";
-import { MdEvent, MdOutlineAlternateEmail } from "react-icons/md";
-import { AiOutlineNumber } from "react-icons/ai";
-import { FaRemoveFormat } from "react-icons/fa";
-import { BiSend, BiBold, BiItalic, BiUnderline } from "react-icons/bi";
+import NewMessage from "./Message/NewMessage";
+import { channelsGet } from "../../api/api-channels";
 
-function Sidebar() {
-  const channels = [
-    {
-      id: 1,
-      value: "general",
-    },
-    {
-      id: 2,
-      value: "Avion School",
-    },
-    {
-      id: 3,
-      value: "Google",
-    },
-  ];
+const Home = () => {
+  const [handleRender, setHandleRender] = useState(false);
+  const [channels, setChannels] = useState("");
+  const [channelIds, setChannelIds] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
 
-  const messages = [
-    {
-      id: 1,
-      value: "Jao",
-    },
-    {
-      id: 2,
-      value: "John",
-    },
-    {
-      id: 3,
-      value: "God",
-    },
-  ];
+  const handleToggleRender = () => {
+    setHandleRender(!handleRender);
+  };
+
+  useEffect(() => {
+    // Set user headers after login
+    let userDetails = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
+
+    const headers = {
+      token: userDetails["access-token"],
+      client: userDetails.client,
+      expiry: userDetails.expiry,
+      uid: userDetails.uid,
+    };
+
+    // Get all channels and channel Ids
+    channelsGet(headers)
+      .then((response) => {
+        let channelObj = response.data.data;
+        setChannels(channelObj);
+        return channelObj;
+      })
+      .then((channelObj) => {
+        let channelIdsArray = channelObj.map((array) => array.id);
+        setChannelIds(channelIdsArray);
+      })
+      .catch((err) => console.log(err));
+  }, [handleRender]);
 
   return (
-    <div className="sidebar">
-      <div className="iconBar">
-        <img src={slackWhite} alt="Logo" className="whiteLogo" />
-        <div className="groupBarIcons">
-          <RiNotification2Line className="barIcons" />
-          <RiSettings4Line className="barIcons" />
-          <RiLogoutCircleLine className="barIconsLogout" />
-        </div>
+    <main className="moveBox">
+      <div className="homeSideBar">
+        <Sidebar channels={channels} handleToggleRender={handleToggleRender} />
       </div>
-      <div className="menuBar">
-        <div className="menuProfile">
-          <div className="menuTabOne">
-            <img src={slackbot} alt="Logo" className="slackBot" />
-            <div className="menuText">
-              <div className="menuName"> Janssen Radh Yumang </div>
-              <div className="menuPosition"> Student</div>
-            </div>
-          </div>
-          <HiOutlineDotsVertical className="menuTabTwo" />
-        </div>
-        <div className="menuOptions">
-          <div className="menuChoices">
-            <MdOutlineAlternateEmail className="optionIcon" /> Mentions
-          </div>
-          <div className="menuChoices">
-            <AiOutlineNumber className="optionIcon" /> Threads
-          </div>
-          <div className="menuChoices">
-            <MdEvent className="optionIcon" /> Events
-          </div>
-        </div>
-        <div className="menuChannels">
-          <div className="aChannel">
-            <Channel title="Channels" items={channels} multiSelect />
-          </div>
-        </div>
-        <div className="menuMessages">
-          <div className="aMessage">
-            <Message title="Messages" items={messages} multiSelect />
-          </div>
-        </div>
+      <div className="homeNewMessage">
+        <NewMessage />
       </div>
-      <div className="page">
-        <div className="pageHeader">
-          <div className="menuTabOne">
-            <AiOutlineNumber className="pageIcons" />
-            <div>
-              <div className="pageName"> general </div>
-            </div>
-          </div>
-          <div className="pageFunctions">
-            <HiSearch className="pageHeaderIcons" />
-            <HiStatusOnline className="pageHeaderIcons" />
-            <HiOutlineDotsVertical className="pageHeaderIcons" />
-          </div>
-        </div>
-        <div className="pageBody">Body</div>
-        <div className="pageFooter">
-          <div className="pageFooterInput">
-            <input
-              type="text"
-              placeholder="Write a message..."
-              className="textInput"
-              contentEditable
-            />
-            <div>
-              <BiBold className="pageFooterIcons" />
-              <BiItalic className="pageFooterIcons" />
-              <BiUnderline className="pageFooterIcons" />
-              <FaRemoveFormat className="pageFooterIcons" />
-            </div>
-          </div>
-          <BiSend className="pageFooterIcon" />
-        </div>
-      </div>
-    </div>
+    </main>
   );
-}
+};
 
-export default Sidebar;
+export default Home;
