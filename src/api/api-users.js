@@ -41,22 +41,10 @@ export const getRecentDms = async () => {
   }
 };
 
-export const searchUser = async (searchString) => {
-  try {
-    const response = await axiosFetch.get("users/");
-    const userList = await response.data.data;
-    const filteredUsers = await userList.filter((user) =>
-      user.email.includes(searchString)
-    );
-    return filteredUsers;
-  } catch (error) {
-    return error;
-  }
-};
 
 export const getInteractedUsers = async ({ token, client, expiry, uid }) => {
   return axios
-    .get("http://206.189.91.54/api/v1/users/recent/", {
+    .get("http://206.189.91.54/api/v1/users", {
       headers: {
         "access-token": token,
         client: client,

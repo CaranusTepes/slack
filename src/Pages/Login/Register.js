@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { userRegistration } from "./../../api/api-auth";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./login.css";
 
 function Register() {
@@ -53,10 +53,6 @@ function Register() {
 
   const handlePwConfirmation = (e) => {
     setPwConfirmation(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    createUser(e);
   };
 
   const handleClickSubmit = (e) => {

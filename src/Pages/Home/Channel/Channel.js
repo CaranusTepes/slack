@@ -8,19 +8,12 @@ import {
 } from "../../../api/api-channels";
 import { getAllUsers } from "../../../api/api-users";
 import { gettingUser } from "../Message/gettingUser";
-import { FindMembers } from "./ChannelSearchBars";
 import ChannelHeader from "./ChannelHeader";
 import Messages from "../Message/Messages";
 import Modals from "./Modals";
 import Buttons from "./Buttons";
 import slackBot from "../../../Assets/Images/slackBot.png";
-import {
-  BsStar,
-  BsBell,
-  BsChevronDown,
-  BsTelephone,
-  BsFillPersonPlusFill,
-} from "react-icons/bs";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 import "./channel.css";
 
 function Channel({}) {
@@ -33,24 +26,23 @@ function Channel({}) {
   const [allUsers, setAllUsers] = useState([]);
   const [currentMembers, setCurrentMembers] = useState([]);
   const [memberIds, setMemberIds] = useState([]);
-  const [users, setUsers] = useState([]);
   const [addedUsers, setAddedUsers] = useState([]);
 
-  // create function to identify channel name
+  //function to identify channel name
   const getChannelName = (arr, id) => {
     let filteredArr = arr.filter((arr) => arr.id === id);
     let channelname = filteredArr[0].name;
     setChannelName(channelname);
   };
 
-  // create function to get current member ids
+  //function to get current member ids
   const getCurrMemberIds = (arr) => {
     let ids = arr.map((member) => member.user_id);
     setMemberIds(ids);
     return ids;
   };
 
-  // create function to add members
+  //function to add members
   const addMember = (e) => {
     let id = parseInt(channelId);
     let member_id = parseInt(e.target.id);
@@ -60,7 +52,7 @@ function Channel({}) {
     window.location.reload();
   };
 
-  // create function to display current members upon modal open
+  //function to display current members upon modal open
   let members;
   let currList = [];
 
@@ -85,29 +77,25 @@ function Channel({}) {
     });
   };
 
-  // Open modal to add members and get current channel details
+
   const handleOpenAddMembers = () => {
     setAddMembersModalOpen(true);
     dispMembers();
   };
 
-  // Close modal to add members
   const handleCloseAddMembers = () => {
     setAddMembersModalOpen(false);
   };
 
-  // Open modal to search and add members
   const handleOpen = () => {
     setAddModalOpen(true);
   };
 
-  // Close modal to search and add members
   const handleClose = () => {
     setAddModalOpen(false);
   };
 
   useEffect(() => {
-    // Set user headers after login
     let userDetails = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
 
     const headers = {
@@ -117,7 +105,6 @@ function Channel({}) {
       uid: userDetails.uid,
     };
 
-    // set argument for channelDetailsGet function
     const arg = {
       channelId,
       headers,
@@ -171,8 +158,6 @@ function Channel({}) {
         receiverClass="Channel"
         receiverID={channelId}
       />
-
-      {/* Modal for channel details and add members */}
       {isAddMembersModalOpen && (
         <Modals
           modalTitle={`#${channelName}`}
@@ -210,7 +195,6 @@ function Channel({}) {
           modalSubtitle={`#${channelName}`}
           handleClose={handleClose}
         >
-          <FindMembers list={allUsers} addMember={addMember} />
           <div className="usersToBeAdded">
             {addedUsers &&
               addedUsers.map((user) => {

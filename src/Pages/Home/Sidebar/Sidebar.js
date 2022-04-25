@@ -19,7 +19,12 @@ import "./sidebar.css";
 import ChannelList from "../Channel/ChannelList";
 import DirectMessage from "../Message/DirectMessage";
 
-function Sidebar({handleOpenNewChannel, channels, headers, handleToggleRender}) {
+function Sidebar({
+  handleOpenNewChannel,
+  channels,
+  headers,
+  handleToggleRender,
+}) {
   let navigate = useNavigate();
   let { uid } = useParams();
   const signOut = () => {
@@ -28,16 +33,15 @@ function Sidebar({handleOpenNewChannel, channels, headers, handleToggleRender}) 
     window.location.reload();
   };
 
-  const newMessage = () =>{
+  const newMessage = () => {
     navigate(`/${uid}/new-message`);
     window.location.reload();
-  }
+  };
 
   const [showChannelList, setShowChannelList] = useState(true);
   const [showRecentDmList, setShowRecentDmList] = useState(true);
 
   useEffect(() => {}, [handleToggleRender]);
-  //Display list of channels but idk why is isn't working :(
   const displayChannels = channels
     ? channels.map((channel, index) => {
         return (
@@ -96,7 +100,9 @@ function Sidebar({handleOpenNewChannel, channels, headers, handleToggleRender}) 
                     onClick={() => setShowChannelList(!showChannelList)}
                   />
                 )}
-                <span>Channels</span>
+                <span onClick={() => setShowChannelList(!showChannelList)}>
+                  Channels
+                </span>
                 <div className="sidebar-add-icon">
                   <AiOutlinePlus
                     onClick={handleOpenNewChannel}
@@ -120,7 +126,9 @@ function Sidebar({handleOpenNewChannel, channels, headers, handleToggleRender}) 
                     onClick={() => setShowRecentDmList(!showRecentDmList)}
                   />
                 )}
-                <span>Direct Messages</span>
+                <span onClick={() => setShowRecentDmList(!showRecentDmList)}>
+                  Direct Messages
+                </span>
                 <div className="sidebar-add-icon">
                   <AiOutlinePlus
                     onClick={newMessage}

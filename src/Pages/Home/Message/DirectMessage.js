@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getRecentDms } from '../../../api/api-users'
 import slackBot from '../../../Assets/Images/slackBot.png'
-import { NavLink, useNavigate, useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 
 const RecentDms = () => {
   const [recentDms, setRecentDms] = useState([])

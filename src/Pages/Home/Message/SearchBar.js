@@ -35,7 +35,7 @@ const SearchBar = ({ className, type }) => {
         <div className="userList">
           {userList
             .filter((user) => {
-              if (searchInput == "") {
+              if (searchInput === "") {
                 return "";
               } else if (
                 user.uid.toLowerCase().includes(searchInput.toLowerCase())
