@@ -1,4 +1,4 @@
-.moveBox {
+.main-container {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -6,21 +6,4 @@
   height: 100%;
   min-height: 100vh;
   min-width: 100vw;
-}
-
-.homeNewMessage {
-  width: 77%;
-  background-color: #323639;
-}
-
-.homeSideBar {
-  width: 23%;
-  background-color: white;
-  
-}
-
-.homeMessage {
-  width: 77%;
-  background-color: #323639;
-  justify-content: center;
 }

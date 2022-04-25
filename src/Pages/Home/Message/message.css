@@ -1,41 +1,212 @@
-.messageTitle {
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #323639;
+  width: 100%;
+  font-family: "Larsseit";
+}
+
+.messages-container-header {
+  text-align: center;
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+.messages-search-user {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  height: auto;
+  color: #ffffff;
+  padding: 15px;
+  border-bottom: 1px solid #ffffff;
 }
 
-.messageName {
-  display: flex;
-  flex-direction: row;
-}
-
-.messageAdd {
-  display: flex;
-  margin-left: 200px;
-}
-
-.optionIconMessage {
-  width: 20px;
-  height: 20px;
-  padding: 0px 0px 0px 10px;
-}
-
-.messageList {
+.messages-search-user > p {
   padding: 10px;
 }
 
-.messageListItem {
-  display: flex;
-  align-items: center;
-  width: auto;
-  height: auto;
+.messages-searchbar {
+  padding: 10px;
 }
 
-.messageListPerItem {
+.userList {
+  background-color: #d6d6d7;
+  position: absolute;
+  padding: 0.5em;
+  overflow-y: scroll;
+  max-height: 15em;
+  width: 74em;
+}
+
+.userList > h3 {
+  font-size: 1rem;
+}
+
+.userList > a {
+  text-decoration: none;
+}
+
+.userList > a:visited {
+  text-decoration: none;
+}
+
+.filteredUsers-img {
+  height: 20px;
+  width: 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.filteredUsers {
+  padding: 10px 10px;
   display: flex;
   align-items: center;
-  padding: 5px;
+}
+
+.new-message {
+  color: #6f6f6f;
+  width: 100%;
+  text-align: center;
+}
+
+.messages-searchbar > input {
+  font-family: "Circular";
+  width: 50vw;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #ffffff;
+}
+
+.empty-message-container {
+  height: 69vh;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  margin-top: 5px;
+}
+
+.messages-scroll-container {
+  padding: 0 20px;
+  height: 75vh;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  margin: 5px;
+  border-bottom: 1px solid white;
+}
+
+.message-container {
+  padding: 5px 20px;
+  display: flex;
+  width: 70%;
+}
+
+.message-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+}
+
+.message-details-body {
+  font-family: "Lato", sans-serif;
+  color: #ffffff;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+.message-details-time {
+  color: #d6d6d7;
+  font-size: 0.6rem;
+}
+
+.message-details-sender {
+  font-weight: 700;
+  padding: 0 10px;
+}
+
+.message-headers {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  color: #ffffff;
+  font-size: 1.1rem;
+}
+
+.user-avatar {
+  width: 5vh;
+  border-radius: 25px;
+}
+
+.messages-receiver {
+  padding: 10px;
+}
+
+.messages-container-header {
+  display: flex;
+  align-items: center;
+  padding: 9px;
+}
+
+.send-message-container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.send-message-button {
+  width: 50px;
+  height: 50px;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+  color: gray;
+}
+
+.send-message-button-active {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: none;
+  background-color: #007a5a;
+  color: #ffffff;
+}
+
+.send-message-input {
+  margin: 0 1em;
+  background-color: #ffffff;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  grid-template-rows: 1fr;
+  height: 80px;
+  align-items: center;
+  padding: 8px 12px;
+  border: solid 1px #bebebe;
+  border-radius: 10px;
+  font-size: 1.2rem;
+}
+
+.send-message-input textarea {
+  resize: none;
+  padding: 5px 5px;
+  font-size: 1rem;
+  font-family: "Circular";
+  vertical-align: text-top;
+  height: 100%;
+  border: none;
+}
+
+.send-message-input textarea:focus {
+  border: none;
+  outline: none;
 }

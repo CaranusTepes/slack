@@ -1,6 +1,11 @@
-@import url(//db.onlinewebfonts.com/c/f4c9951744c0ef14010218fc1b2f7938?family=Larsseit);
-@import url(//db.onlinewebfonts.com/c/ac9525e5f200f57332b3080d0db9d8f6?family=Sailec-Medium);
-@import url(//db.onlinewebfonts.com/c/7d63af02c08816194ff9ca408837b97c?family=Larsseit+Light);
+@font-face {
+  font-family: "Larsseit";
+  src: url("../public/Larsseit-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "Circular";
+  src: url("../public/CircularStd-Black.otf") format("opentype");
+}
 
 * {
   margin: 0px;

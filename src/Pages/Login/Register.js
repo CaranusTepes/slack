@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { userRegistration } from "./../../api/api-auth";
 import { useNavigate, Link } from "react-router-dom";
-import Errors from "../../api/Errors";
-import "./register.css";
+import "./login.css";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -11,25 +10,18 @@ function Register() {
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
   const [displaySuccessMessage, setDisplaySuccessMessage] = useState(false);
-
-  // Declare variable for useNavigate
   let navigate = useNavigate();
 
-  // Reset function
   const reset = () => {
     setEmail("");
     setPassword("");
     setPwConfirmation("");
   };
 
-  // Create user account upon registration
   const createUser = (e) => {
     e.preventDefault();
-
-    // Create object with new user details
     const userDetails = { email, password, password_confirmation };
 
-    // Invoke API function for user registration
     userRegistration(userDetails)
       .then((response) => {
         if (response.status === 200) {
@@ -49,12 +41,6 @@ function Register() {
         setDisplaySuccessMessage(false);
         setHasError(true);
       });
-  };
-
-  // Event handlers
-
-  const signIn = () => {
-    navigate("/");
   };
 
   const handleEmailInput = (e) => {
@@ -77,82 +63,55 @@ function Register() {
     createUser(e);
   };
   return (
-    <body className="loginBody">
-      <div className="container" id="container">
-        {hasError && (
-          <Errors title="Check your email address.">
-            Review the information you have submitted and try again.
-          </Errors>
-        )}
-        <div className="form-container sign-in-container">
-          <form className="loginForm" onSubmit={handleSubmit}>
-            <h1 className="loginH1">Sign Up</h1>
-            <div className="social-container"></div>
+    <body>
+      <div className="container">
+        <div className="left">
+          <div className="header">
+            <h2 className="animation a1">Welcome Back</h2>
+            <h4 className="animation a2">
+              Log in to your account using email and password
+            </h4>
+          </div>
+          <form className="form" onSubmit="{handleSubmit}">
             <input
               type="email"
-              placeholder="Type your Email"
-              className="loginInput"
-              name="email"
-              id="email"
-              value={email}
+              className="form-field animation a3"
+              placeholder="Email Address"
               onChange={handleEmailInput}
               required
             />
             <input
               type="password"
-              placeholder="Type your Password"
-              className="loginInput"
-              name="password"
-              id="password"
-              value={password}
+              className="form-field animation a4"
+              placeholder="Password"
               onChange={handlePwInput}
               required
             />
             <input
               type="password"
-              placeholder="Type your Password Again"
-              className="loginInput"
-              name="password_confirmation"
-              id="password_confirmation"
-              value={password_confirmation}
+              className="form-field animation a5"
+              placeholder="Confirm Password"
               onChange={handlePwConfirmation}
               required
             />
             {hasError
               ? errorMessage.map((error, index) => (
-                  <Errors key={index} title="warning-red">
+                  <h5 key={index} className="warning-red">
                     {error}
-                  </Errors>
+                  </h5>
                 ))
               : null}
             {displaySuccessMessage ? (
-              <div className="success-message">
+              <div className="success-green">
                 Successfully created account. Redirecting to login...
               </div>
             ) : null}
-            <button
-              className="loginButton"
-              onClick={handleClickSubmit}
-              title="signIn-button"
-            >
-              Sign Up
+            <button className="animation a6" onClick={handleClickSubmit}>
+              REGISTER
             </button>
           </form>
         </div>
-        <div className="overlay-container">
-          <div className="overlay">
-            <div className="overlay-panel overlay-right">
-              <h1 className="loginH1">Hello, Friend!</h1>
-              <p className="pText">
-                Enter your personal details and start journey with us
-              </p>
-              <button className="loginButton ghost" id="signUp" onClick={signIn}>
-                Already have an account? Sign In
-                <Link to="/"></Link>
-              </button>
-            </div>
-          </div>
-        </div>
+        <div className="right"></div>
       </div>
     </body>
   );

@@ -9,29 +9,21 @@ const RecentDms = () => {
   const loginData = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
 
   useEffect(() => {
-    // const headers = {
-    //   token: loginData['access-token'],
-    //   client: loginData.client,
-    //   expiry: loginData.expiry,
-    //   uid: loginData.uid,
-    // }
-
+    const headers = {
+      token: loginData['access-token'],
+      client: loginData.client,
+      expiry: loginData.expiry,
+      uid: loginData.uid,
+    }
     getRecentDms()
       .then((data) => setRecentDms(data.data.data))
-      .catch((err) => console.log('Fetch Interacted Users Error: ', err))
-
-    // console.log(loginData)
+      .catch((err) => console.log('Fetch Users Error: ', err))
   }, [])
 
-  // console.log(recentDms)
-
   const userIds = recentDms.map((user) => user.id)
-  // console.log(userIds)
   const filteredUsers = recentDms.filter(({ id }, index) => {
     return !userIds.includes(id, index + 1)
   })
-
-  // console.log(filteredUsers);
 
   const renderUsersList = filteredUsers
     ? filteredUsers.map((user, index) => {
@@ -42,7 +34,6 @@ const RecentDms = () => {
             key={index}
           >
             <img src={slackBot} />
-            <div className="online-status-on"></div>
             <NavLink to={`/${params.uid}/messages/${id}`} key={index}>
               <span>{email}</span>
             </NavLink>

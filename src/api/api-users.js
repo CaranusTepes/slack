@@ -16,7 +16,7 @@ const axiosFetch = headers
 
 export const getAllUsers = async () => {
   try {
-    const response = await axiosFetch.get("users/");
+    const response = await axiosFetch.get("/users/");
     return response;
   } catch (error) {
     return error;
@@ -25,7 +25,7 @@ export const getAllUsers = async () => {
 
 export const channelsGet = async () => {
   try {
-    const response = await axiosFetch.get("channels/");
+    const response = await axiosFetch.get("/channels/");
     return response;
   } catch (error) {
     return error;
@@ -34,7 +34,7 @@ export const channelsGet = async () => {
 
 export const getRecentDms = async () => {
   try {
-    const response = await axiosFetch.get("users/recent/");
+    const response = await axiosFetch.get("/users/recent/");
     return response;
   } catch (error) {
     return error;

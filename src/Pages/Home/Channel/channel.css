@@ -1,45 +1,64 @@
-.channelTitle {
+.channelPage {
+  display: flex;
+  flex-direction: column;
+  background-color: #323639;
+  width: 74%;
+  font-family: "Larsseit";
+  padding: 20px;
+}
+
+.channel-container-header {
+  text-align: center;
+  color: #ffffff;
+  padding: 15px;
+  border-bottom: 1px solid #ffffff;
+align-items: center;
+}
+
+.channel-header-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-bottom: 1px solid #ffffff;
+  height: 7vh;
   align-items: center;
-  width: 90%;
-  height: auto;
 }
 
 .channelName {
-  display: flex;
-  flex-direction: row;
+  font-size: 30px;
+  color: #ffffff;
 }
 
-.channelAdd {
-  display: flex;
-  margin-left: 204px;
+.buttonChannel {
+  padding: 10px;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  align-items: center;
 }
 
-.optionIconChannel {
-  width: 20px;
-  height: 20px;
-  padding: 0px 0px 0px 10px;
-}
-
-.channelList {
+.icon-addMembers {
+  font-size: 20px;
+  color: #ffffff;
   padding: 10px;
 }
 
-.channelListItem {
-  display: flex;
-  align-items: center;
-  width: auto;
-  height: auto;
+.icon-membersNum {
+  color: #ffffff;
+  font-size: 30px;
 }
 
-.channelListPerItem {
-  display: flex;
-  align-items: center;
-  padding: 5px;
+.input-findmembers {
+  width: 90%;
+  border: none;
+  outline: none;
+  margin-left: 12px;
+  background-color: transparent;
+  color: #ffffff;
 }
 
-.whenClicked {
-  color: red;
+.filtered-container {
+  display: flex;
+  align-items: center;
 }

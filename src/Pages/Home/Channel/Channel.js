@@ -1,71 +1,226 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import {
+  channelsGet,
+  channelDetailsGet,
+  channelAddMember,
+} from "../../../api/api-channels";
+import { getAllUsers } from "../../../api/api-users";
+import { gettingUser } from "../Message/gettingUser";
+import { FindMembers } from "./ChannelSearchBars";
+import ChannelHeader from "./ChannelHeader";
+import Messages from "../Message/Messages";
+import Modals from "./Modals";
+import Buttons from "./Buttons";
+import slackBot from "../../../Assets/Images/slackBot.png";
+import {
+  BsStar,
+  BsBell,
+  BsChevronDown,
+  BsTelephone,
+  BsFillPersonPlusFill,
+} from "react-icons/bs";
 import "./channel.css";
-import { MdOutlineArrowDropUp, MdOutlineArrowDropDown } from "react-icons/md";
-import { AiOutlineNumber, AiOutlinePlus } from "react-icons/ai";
 
-function Channel({ title, items, multiSelect = false }) {
-  const [open, setOpen] = useState(false);
-  const [selection, setSelection] = useState([]);
-  const toggle = () => setOpen(!open);
+function Channel({}) {
+  let { channelId } = useParams();
+  const [channels, setChannels] = useState();
+  const [channelid, setchannelid] = useState("");
+  const [channelName, setChannelName] = useState();
+  const [isAddMembersModalOpen, setAddMembersModalOpen] = useState(null);
+  const [isAddModalOpen, setAddModalOpen] = useState(null);
+  const [allUsers, setAllUsers] = useState([]);
+  const [currentMembers, setCurrentMembers] = useState([]);
+  const [memberIds, setMemberIds] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [addedUsers, setAddedUsers] = useState([]);
 
-  function handleOnClick(item) {
-    if (!selection.some((current) => current.id === item.id)) {
-      if (!multiSelect) {
-        setSelection([item]);
-      } else if (multiSelect) {
-        setSelection([...selection, item]);
-      }
-    } else {
-      let selectionAfterRemoval = selection;
-      selectionAfterRemoval = selectionAfterRemoval.filter(
-        (current) => current.id !== item.id
-      );
-      setSelection([...selectionAfterRemoval]);
-      }
-  }
+  // create function to identify channel name
+  const getChannelName = (arr, id) => {
+    let filteredArr = arr.filter((arr) => arr.id === id);
+    let channelname = filteredArr[0].name;
+    setChannelName(channelname);
+  };
 
-  function isItemInSelection(item) {
-    if (selection.some((current) => current.id === item.id)) {
-     return true;
-      
-    }
-    return false;
-  }
+  // create function to get current member ids
+  const getCurrMemberIds = (arr) => {
+    let ids = arr.map((member) => member.user_id);
+    setMemberIds(ids);
+    return ids;
+  };
+
+  // create function to add members
+  const addMember = (e) => {
+    let id = parseInt(channelId);
+    let member_id = parseInt(e.target.id);
+    channelAddMember({ id, member_id });
+    setAddModalOpen(false);
+    setAddMembersModalOpen(false);
+    window.location.reload();
+  };
+
+  // create function to display current members upon modal open
+  let members;
+  let currList = [];
+
+  const dispMembers = () => {
+    members = memberIds;
+    members.map((member) => {
+      let memberObj = gettingUser(member);
+      memberObj
+        .then((obj) => {
+          currList.push(obj);
+          return currList;
+        })
+        .then((currList) => {
+          if (currList.length === memberIds.length) {
+            setCurrentMembers(currList);
+            console.log(currList);
+            console.log(currentMembers);
+            return;
+          }
+        })
+        .catch((err) => console.log(err));
+    });
+  };
+
+  // Open modal to add members and get current channel details
+  const handleOpenAddMembers = () => {
+    setAddMembersModalOpen(true);
+    dispMembers();
+  };
+
+  // Close modal to add members
+  const handleCloseAddMembers = () => {
+    setAddMembersModalOpen(false);
+  };
+
+  // Open modal to search and add members
+  const handleOpen = () => {
+    setAddModalOpen(true);
+  };
+
+  // Close modal to search and add members
+  const handleClose = () => {
+    setAddModalOpen(false);
+  };
+
+  useEffect(() => {
+    // Set user headers after login
+    let userDetails = JSON.parse(sessionStorage.getItem("userLoggedInDetails"));
+
+    const headers = {
+      token: userDetails["access-token"],
+      client: userDetails.client,
+      expiry: userDetails.expiry,
+      uid: userDetails.uid,
+    };
+
+    // set argument for channelDetailsGet function
+    const arg = {
+      channelId,
+      headers,
+    };
+
+    // Get all channels
+    channelsGet(headers)
+      .then((response) => {
+        let channelObj = response.data.data;
+        setChannels(channelObj);
+        return channelObj;
+      })
+      .then((channelObj) => {
+        if (channelId) {
+          let id = parseInt(channelId);
+          getChannelName(channelObj, id);
+          setchannelid(id);
+        }
+      })
+      .catch((err) => console.log(err));
+
+    // get current list of channel members
+    channelDetailsGet(arg)
+      .then((result) => {
+        let members = result.data.data.channel_members;
+        setCurrentMembers(members);
+        return members;
+      })
+      .then((members) => getCurrMemberIds(members))
+      .catch((err) => console.log(err));
+
+    // get list of all users
+    getAllUsers()
+      .then((response) => {
+        let users = response.data.data;
+        setAllUsers(users);
+      })
+      .catch((error) => error);
+  }, [channelId, members]);
 
   return (
-    <div>
-      <div
-        tabIndex={0}
-        role="button"
-        onKeyPress={() => toggle(!open)}
-        onClick={() => toggle(!open)}
-      >
-        <div className="channelTitle">
-          <div className="channelName">
-            {title}
-            {open ? (
-              <MdOutlineArrowDropUp className="optionIconChannel" />
-            ) : (
-              <MdOutlineArrowDropDown className="optionIconChannel" />
-            )}
+    <div className="channelPage">
+      <Messages
+        displayHeader={
+          <ChannelHeader
+            handleOpen={handleOpenAddMembers}
+            channelName={channelName}
+            membersNum={memberIds.length}
+          />
+        }
+        receiverClass="Channel"
+        receiverID={channelId}
+      />
+
+      {/* Modal for channel details and add members */}
+      {isAddMembersModalOpen && (
+        <Modals
+          modalTitle={`#${channelName}`}
+          handleClose={handleCloseAddMembers}
+          btnText="Done"
+        >
+          <hr className="hr-addMembers" />
+          <div className="addMembers-btn" onClick={handleOpen}>
+            <Buttons
+              className="addMembers-btn-icon"
+              title="addMembers-btn-icon"
+            >
+              <BsFillPersonPlusFill />
+            </Buttons>
+            <div className="addMembers-btn-text">Add People</div>
           </div>
-          <div className="channelAdd">
-            <AiOutlinePlus className="optionIconTwo" />{" "}
+          <div className="addMembers-currentMembers-list">
+            {currentMembers &&
+              currentMembers.map((member) => {
+                return (
+                  <div className="currentMembers-container" key={member.id}>
+                    <img src={slackBot} height="32px" width="32px" />
+                    <span className="email"> {member.email} </span>
+                  </div>
+                );
+              })}
           </div>
-        </div>
-      </div>
-      {open && (
-        <ul className="channelList">
-          {items.map((item) => (
-            <div className="channelListItem" key={item.id}>
-              <div type="button" onClick={() => handleOnClick(item)} className="channelListPerItem">
-                <AiOutlineNumber className="optionIcon" />
-                <span>{item.value}</span>
-                <span>{isItemInSelection(item) && "Clicked"}</span>
-              </div>
-            </div>
-          ))}
-        </ul>
+        </Modals>
+      )}
+
+      {isAddModalOpen && (
+        <Modals
+          className="modal-searchAddMember"
+          modalTitle="Add people"
+          modalSubtitle={`#${channelName}`}
+          handleClose={handleClose}
+        >
+          <FindMembers list={allUsers} addMember={addMember} />
+          <div className="usersToBeAdded">
+            {addedUsers &&
+              addedUsers.map((user) => {
+                <div className="filteredUserItems" key={user.id}>
+                  <img src={slackBot} height="20px" width="20px" />
+                  <span>{user.email} </span>
+                </div>;
+              })}
+          </div>
+        </Modals>
       )}
     </div>
   );

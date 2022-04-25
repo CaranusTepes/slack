@@ -5,13 +5,13 @@ let axiosFetch =  axios.create({
 })
 
 
-// Connect to API to create a channel
+//creat channel
 export const channelCreate = async ({ name, user_ids }) => {
     let headers = JSON.parse(sessionStorage.getItem('userLoggedInDetails'))
     
     try {
         const response = await axiosFetch.post(
-            'channels/', 
+            '/channels/', 
             {
                 name, 
                 user_ids },
@@ -29,11 +29,11 @@ export const channelCreate = async ({ name, user_ids }) => {
     }
 }
 
-// Connect to API to get all channels
+//Getting all channels
 export const channelsGet = async ({ token, client, expiry, uid }) => {
     try {
         const response = await axiosFetch.get(
-            'channels/',
+            '/channels/',
             {
                 headers: {
                     "access-token": token,
@@ -48,11 +48,11 @@ export const channelsGet = async ({ token, client, expiry, uid }) => {
     }
 }
 
-// Connect to API to get all user-owned channels
+//Get all owned channels
 export const channelsOwnedGet = async ({ token, client, expiry, uid }) => {
     try {
         const response = await axiosFetch.get(
-            'channel/owned',
+            '/channel/owned',
             {
                 headers: {
                     "access-token": token,
@@ -72,7 +72,7 @@ export const channelsOwnedGet = async ({ token, client, expiry, uid }) => {
 export const channelDetailsGet = async ({channelId, headers: {token, client, expiry, uid}}) => {
     try {
         const response = await axiosFetch.get(
-            `channels/${channelId}/`,
+            `/channels/${channelId}/`,
             {
                 headers: {
                     "access-token": token,
@@ -93,7 +93,7 @@ export const channelAddMember = async ({id, member_id}) => {
 
     try {
         const response = await axiosFetch.post(
-            `channel/add_member/`,
+            `/channel/add_member/`,
             {
                 id,
                 member_id
@@ -117,7 +117,7 @@ export const channelAddMember = async ({id, member_id}) => {
 // Connect to API to search for a particular user
 export const getUser = async ({id, headers: {token, client, expiry, uid}}) => {
     return axiosFetch.get(
-        `users/`,
+        `/users/`,
         {
             headers: {
                 "access-token": token,

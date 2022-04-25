@@ -17,9 +17,9 @@ import { AiOutlineNumber, AiOutlinePlus } from "react-icons/ai";
 import { useNavigate, useParams, NavLink, Link } from "react-router-dom";
 import "./sidebar.css";
 import ChannelList from "../Channel/ChannelList";
-import RecentDms from "../Message/RecentDms";
+import DirectMessage from "../Message/DirectMessage";
 
-function Sidebar(handleOpenNewChannel, channels, headers, handleToggleRender) {
+function Sidebar({handleOpenNewChannel, channels, headers, handleToggleRender}) {
   let navigate = useNavigate();
   let { uid } = useParams();
   const signOut = () => {
@@ -28,11 +28,16 @@ function Sidebar(handleOpenNewChannel, channels, headers, handleToggleRender) {
     window.location.reload();
   };
 
+  const newMessage = () =>{
+    navigate(`/${uid}/new-message`);
+    window.location.reload();
+  }
+
   const [showChannelList, setShowChannelList] = useState(true);
   const [showRecentDmList, setShowRecentDmList] = useState(true);
 
   useEffect(() => {}, [handleToggleRender]);
-  // Create a function to display list of channels
+  //Display list of channels but idk why is isn't working :(
   const displayChannels = channels
     ? channels.map((channel, index) => {
         return (
@@ -118,12 +123,12 @@ function Sidebar(handleOpenNewChannel, channels, headers, handleToggleRender) {
                 <span>Direct Messages</span>
                 <div className="sidebar-add-icon">
                   <AiOutlinePlus
-                    onClick={() => navigate(`/${uid}/new-message`)}
+                    onClick={newMessage}
                     className="optionIconTwo"
                   />
                 </div>
               </div>
-              {showRecentDmList ? <RecentDms loginData={headers} /> : null}
+              {showRecentDmList ? <DirectMessage loginData={headers} /> : null}
             </div>
           </div>
         </div>

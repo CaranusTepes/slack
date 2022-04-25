@@ -21,7 +21,6 @@ export const sendMessage = async ({ receiver_id, receiver_class, body }) => {
       receiver_class,
       body,
     })
-    // console.log(response)
     return response
   } catch (error) {
     return error
@@ -30,7 +29,7 @@ export const sendMessage = async ({ receiver_id, receiver_class, body }) => {
 
 export const getMessages = async ({ receiver_id, receiver_class }) => {
   try {
-    const response = await axiosFetch.get('/messages?receiver_id=1&receiver_class=User', {
+    const response = await axiosFetch.get('/messages', {
       params: { receiver_class, receiver_id },
     })
     return response

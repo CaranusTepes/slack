@@ -5,8 +5,7 @@ const SendMessage = ({ onClick, handleKeyPress, receiverName = '' }) => {
   const [input, setInput] = useState('')
 
   return (
-    <div className={'send-message-container'}>
-      <div>
+    <div className="send-message-container">
         <form className="send-message-input">
           <textarea
             value={input}
@@ -34,7 +33,6 @@ const SendMessage = ({ onClick, handleKeyPress, receiverName = '' }) => {
             <IoSend />
           </button>
         </form>
-      </div>
     </div>
   )
 }
