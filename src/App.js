@@ -59,7 +59,7 @@ function App() {
             </Route>
           </>
         )}
-        <Route path="/404" element={<Error />} />
+        <Route path="/error" element={<Error />} />
         <Route path="*" element={<Loading />} />
       </Routes>
     </Router>

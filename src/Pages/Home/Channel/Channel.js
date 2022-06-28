@@ -8,6 +8,7 @@ import {
 } from "../../../api/api-channels";
 import { getAllUsers } from "../../../api/api-users";
 import { gettingUser } from "../Message/gettingUser";
+import { FindMembers } from "./ChannelSearchBars";
 import ChannelHeader from "./ChannelHeader";
 import Messages from "../Message/Messages";
 import Modals from "./Modals";
@@ -195,6 +196,7 @@ function Channel({}) {
           modalSubtitle={`#${channelName}`}
           handleClose={handleClose}
         >
+          <FindMembers list={allUsers} addMember={addMember} />
           <div className="usersToBeAdded">
             {addedUsers &&
               addedUsers.map((user) => {
